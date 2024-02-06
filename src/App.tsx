@@ -2,12 +2,35 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./routes/Root";
 import Notes from "./routes/Notes";
 import Create from "./routes/Create";
+import { createTheme, ThemeProvider } from "@material-ui/core";
+import { purple } from "@material-ui/core/colors";
+import Layout from "./components/Layout";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#fefefe",
+    },
+    secondary: purple,
+  },
+  typography: {
+    fontFamily: "Quicksand",
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
+  },
+});
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root />,
+      element: (
+        <Layout>
+          <Root />
+        </Layout>
+      ),
       children: [
         {
           path: "/",
@@ -21,7 +44,11 @@ const App: React.FC = () => {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router}></RouterProvider>
+    </ThemeProvider>
+  );
 };
 
 export default App;
