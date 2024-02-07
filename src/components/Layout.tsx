@@ -15,10 +15,6 @@ import { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => {
@@ -55,6 +51,10 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
+
+interface LayoutProps {
+  children: ReactNode;
+}
 
 const Layout = ({ children }: LayoutProps) => {
   const classNames = useStyles();
